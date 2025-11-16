@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOUSEWIRE PRO™ – Electrician Templates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --yellow: #FFC107;
+            --dark-yellow: #FFA000;
+            --gray: #f8f9fa;
+            --text: #222;
+            --card: #fff;
+        }
+        [data-theme="dark"] {
+            --text: #eee;
+            --card: #1a1a1a;
+            --gray: #111;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: white;
+            transition: 0.3s;
+        }
+        .container { max-width: 1100px; margin: auto; padding: 0 20px; }
+
+        header {
+            background: var(--black);
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+            position: relative;
+        }
+        .logo { width: 180px; margin-bottom: 15px; }
+        h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 10px; }
+        .tagline { font-size: 1.4rem; opacity: 0.9; margin: 15px 0; }
+        .subtitle { font-size: 1.1rem; opacity: 0.8; max-width: 700px; margin: 20px auto; }
+        .btn {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 16px 36px;
+            margin: 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            border: 2px solid var(--yellow);
+        }
+        .btn:hover { background: transparent; color: var(--yellow); transform: translateY(-3px); }
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-outline:hover { background: white; color: var(--black); }
+
+        section { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--black); position: relative; }
+        .section-title::after { content: ''; display: block; width: 80px; height: 4px; background: var(--yellow); margin: 15px auto; border-radius: 2px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card {
+            background: var(--card);
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
+        .card i { font-size: 2.8rem; color: var(--yellow); margin-bottom: 18px; }
+
+        .products { background: var(--gray); }
+        .checklist { list-style: none; max-width: 800px; margin: auto; }
+        .checklist li {
+            background: var(--card);
+            margin: 12px 0;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .checklist i { color: var(--yellow); margin-right: 15px; font-size: 1.3rem; }
+
+        table {
+            width: 100%; border-collapse: collapse; margin: 40px 0; background: var(--card); border-radius: 12px; overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        th, td { padding: 18px; text-align: center; border-bottom: 1px solid #eee; }
+        th { background: var(--yellow); color: var(--black); font-weight: 700; }
+        tr:hover { background: #fff8e1; }
+
+        .pricing .grid { justify-content: center; }
+        .price-card {
+            text-align: center; padding: 40px; border-radius: 20px; background: var(--card);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1); transition: 0.3s;
+        }
+        .price-card.pro { border: 4px solid var(--yellow); transform: scale(1.05); }
+        .price { font-size: 3.2rem; font-weight: 800; color: var(--yellow); margin: 15px 0; }
+        .price small { font-size: 1.1rem; color: #666; }
+
+        .faq { max-width: 800px; margin: auto; }
+        .faq-item { margin: 20px 0; }
+        .faq-question { font-weight: 600; cursor: pointer; color: var(--yellow); }
+        .faq-answer { margin-top: 10px; display: none; }
+
+        footer {
+            background: var(--black);
+            color: #aaa;
+            text-align: center;
+            padding: 50px 20px;
+            font-size: 0.95rem;
+        }
+        footer a { color: var(--yellow); text-decoration: none; margin: 0 10px; }
+
+        .theme-toggle {
+            position: absolute; top: 20px; right: 20px;
+            background: rgba(255,255,255,0.2); border: none; color: white;
+            width: 50px; height: 50px; border-radius: 50%; font-size: 1.3rem; cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.4rem; }
+            .logo { width: 140px; }
+            .price-card.pro { transform: none; }
+            table { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-sun"></i>
+        </button>
+        <div class="container">
+            <img src="https://i.imgur.com/8KzL2pN.png" alt="HOUSEWIRE PRO Logo" class="logo">
+            <h1>HouseWire Pro™</h1>
+            <p class="tagline">The Electrician’s Paperwork System</p>
+            <p class="subtitle">Clean templates. Standardized workflow. Professional documentation.<br>
+            HouseWire Pro gives electricians the system they should’ve had years ago.</p>
+            <a href="#free" class="btn">Download Free Starter Pack</a>
+            <a href="#pro" class="btn btn-outline">Get the Pro Toolkit</a>
+        </div>
+    </header>
+
+    <section id="kit">
+        <div class="container">
+            <h2 class="section-title">The Residential Electrical Project Kit</h2>
+            <p style="text-align:center;max-width:800px;margin:auto;font-size:1.1 PJrem;">
+                Your complete toolkit for estimates, rough-ins, trim-outs, and job management.<br>
+                <strong>Built for:</strong> Electricians · Electrical Contractors · Apprentice Programs · Builders · GC Subs
+            </p>
+        </div>
+    </section>
+
+    <section class="products">
+        <div class="container">
+            <h2 class="section-title">What You Get Inside the Kit</h2>
+            <ul class="checklist">
+                <li><i class="fas fa-check"></i> <strong>Professional Estimate Templates</strong> – Clean, simple, and built around real electrical bidding language.</li>
+                <li><i class="fas fa-check"></i> <strong>Rough-In Checklist</strong> – Eliminates missed steps and calls from inspectors.</li>
+                <li><i class="fas fa-check"></i> <strong>Trim-Out Checklist</strong> – Ensures every device and fixture is installed correctly and consistently.</li>
+                <li><i class="fas fa-check"></i> <strong>Pre-Drywall Inspection Sheet</strong> – For GC walk-throughs and inspection day.</li>
+                <li><i class="fas fa-check"></i> <strong>Final Punchlist</strong> – Finish the job professionally and avoid call-backs.</li>
+                <li><i class="fas fa-check"></i> <strong>Panel Schedule Templates (Fillable)</strong> – Clean layout, perfect for homeowner packets or service calls.</li>
+                <li><i class="fas fa-check"></i> <strong>Circuit Index Map</strong> – Room-by-room circuit labeling for fast troubleshooting.</li>
+                <li><i class="fas fa-check"></i> <strong>Load Calc Worksheet</strong> – Basic NEC 220 residential load calculation flow.</li>
+                <li><i class="fas fa-check"></i> <strong>Material Ordering Sheet</strong> – Keeps your rough-in and trim phases organized.</li>
+                <li><i class="fas fa-check"></i> <strong>Change Order Form</strong> – Professional documentation for additional scope.</li>
+                <li><i class="fas fa-check"></i> <strong>Warranty & Maintenance Sheet</strong> – Customer-facing and ready to print.</li>
+                <li><i class="fas fa-check"></i> <strong>Job Crew Dashboard</strong> – Daily priorities, crew notes, task lists — perfect for multi-tech teams.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">What Makes HouseWire Pro Different</h2>
+            <p style="max-width:800px;margin:auto;text-align:center;">
+                Most electricians don’t have clean, standardized documents.<br>
+                Your competitors use messy notes, cheap templates, or nothing at all.
+            </p>
+            <div class="grid" style="margin-top:40px;">
+                <div class="card"><i class="fas fa-check-circle"></i> Consistent look for every job</div>
+                <div class="card"><i class="fas fa-users"></i> Clean client-facing documents</div>
+                <div class="card"><i class="fas fa-hard-hat"></i> Organized workflow for crews</div>
+                <div class="card"><i class="fas fa-clipboard-check"></i> Faster inspections</div>
+                <div class="card"><i class="fas fa-tools"></i> Less confusion on the jobsite</div>
+                <div class="card"><i class="fas fa-star"></i> Real contractor-level professionalism</div>
+            </div>
+            <p style="text-align:center;margin-top:30px;font-style:italic;">
+                <strong>Templates built by electricians, not designers.</strong>
+            </p>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Pricing</h2>
+            <div class="grid">
+                <div class="card price-card" id="free">
+                    <h3>Free Starter Pack</h3>
+                    <p class="price">FREE</p>
+                    <ul style="text-align:left;margin:25px 0;">
+                        <li>1 Template</li>
+                        <li>Includes the Trim-Out Checklist</li>
+                        <li>Great intro to the brand</li>
+                    </ul>
+                    <a href="#" class="btn">Download Free Starter Pack</a>
+                </div>
+                <div class="card price-card pro" id="pro">
+                    <h3>Pro Toolkit — $19/month</h3>
+                    <p class="price">$19<small>/month</small></p>
+                    <ul style="text-align:left;margin:25px 0;">
+                        <li>All templates</li>
+                        <li>All updates</li>
+                        <li>New monthly drops</li>
+                        <li>Priority access to new tools</li>
+                        <li>Editable Canva versions</li>
+                        <li>PDF versions</li>
+                        <li>Lifetime commercial use</li>
+                    </ul>
+                    <a href="#" class="btn">Get the Pro Toolkit</a>
+                </div>
+                <div class="card price-card">
+                    <h3>One-Time Full Bundle — $97</h3>
+                    <p class="price">$97</p>
+                    <ul style="text-align:left;margin:25px 0;">
+                        <li>All 12 templates</li>
+                        <li>Editable Canva AND PDF</li>
+                        <li>One-time purchase</li>
+                        <li>Perfect for electricians who hate subscriptions</li>
+                    </ul>
+                    <a href="#" class="btn">Buy Once</a>
+                </div>
+            </div>
+
+            <h3 style="text-align:center;margin:50px 0 30px;">Feature Comparison</h3>
+            <table>
+                <tr><th>Feature</th><th>Free</th><th>Pro Monthly</th><th>One-Time Kit</th></tr>
+                <tr><td>Trim-Out Checklist</td><td>✔</td><td>✔</td><td>✔</td></tr>
+                <tr><td>All 12 Templates</td><td>❌</td><td>✔</td><td>✔</td></tr>
+                <tr><td>Canva Editable Versions</td><td>❌</td><td>✔</td><td>✔</td></tr>
+                <tr><td>PDF Versions</td><td>✔</td><td>✔</td><td>✔</td></tr>
+                <tr><td>Lifetime Updates</td><td>❌</td><td>✔</td><td>❌</td></tr>
+                <tr><td>Commercial Use</td><td>✔</td><td>✔</td><td>✔</td></tr>
+                <tr><td>Priority Support</td><td>❌</td><td>✔</td><td>❌</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Who Uses HouseWire Pro?</h2>
+            <div class="grid">
+                <div class="card"><i class="fas fa-hard-hat"></i> Residential electricians</div>
+                <div class="card"><i class="fas fa-building"></i> Small electrical contractors</div>
+                <div class="card"><i class="fas fa-graduation-cap"></i> Apprentices learning the trade</div>
+                <div class="card"><i class="fas fa-users"></i> Multi-tech companies</div>
+                <div class="card"><i class="fas fa-calculator"></i> Estimators and bidding teams</div>
+                <div class="card"><i class="fas fa-hammer"></i> Builders who want consistency from subs</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">FAQ</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">
+                    Do I need special software?
+                </div>
+                <div class="faq-answer">No. You can use PDFs or edit everything in Canva.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">
+                    Can I use these on the jobsite?
+                </div>
+                <div class="faq-answer">Yes — print them, use on tablets, or fill out digitally.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">
+                    Can I resell the templates?
+                </div>
+                <div class="faq-answer">No. But you can use them for unlimited jobs and clients.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">
+                    Will more templates be added?
+                </div>
+                <div class="faq-answer">Yes — Pro members get monthly drops.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">
+                    Do you offer custom electrician templates?
+                </div>
+                <div class="faq-answer">Yes — contact support for requests.</div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--gray);padding:60px 0;">
+        <div class="container" style="text-align:center;">
+            <h2 style="margin-bottom:30px;">Ready to Upgrade Your Workflow?</h2>
+            <a href="#free" class="btn" style="font-size:1.2rem;padding:18px 40px;">Download Free Starter Pack</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 HOUSEWIRE PRO™ – The Electrician’s Paperwork System<br>
+            <a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Contact</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.querySelector('.theme-toggle i');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        }
+    </script>
+</body>
+</html>
