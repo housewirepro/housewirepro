@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOUSEWIRE PRO™ – Residential</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --yellow: #FFC107;
+            --dark-yellow: #FFA000;
+            --light-bg: #f8f9fa;
+            --text: #222;
+            --card-bg: #fff;
+        }
+        [data-theme="dark"] {
+            --text: #eee;
+            --card-bg: #1a1a1a;
+            --light-bg: #111;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--light-bg);
+            transition: 0.3s;
+        }
+        .container { max-width: 1100px; margin: auto; padding: 0 20px; }
+
+        header {
+            background: var(--black);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+        .logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+        h1 { font-size: 2.8rem; margin-bottom: 0.5rem; color: white; }
+        h1 span { display: block; font-size: 1.2rem; opacity: 0.9; }
+
+        .btn {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 14px 34px;
+            margin: 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            border: 2px solid var(--yellow);
+        }
+        .btn:hover { background: transparent; color: var(--yellow); }
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-secondary:hover { background: white; color: var(--black); }
+
+        section { padding: 70px 0; }
+        .features, .pricing { background: white; }
+        h2 { text-align: center; margin-bottom: 50px; font-size: 2.4rem; color: var(--black); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+        .card:hover { border-color: var(--yellow); transform: translateY(-8px); }
+        .card i { font-size: 2.5rem; color: var(--yellow); margin-bottom: 1rem; }
+
+        .diagram {
+            background: #f0f0f0;
+            border: 3px dashed var(--yellow);
+            height: 240px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #555;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .diagram:hover { background: #fff8e1; }
+
+        #exportPdf {
+            background: var(--yellow);
+            color: var(--black);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: var(--black);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        footer a { color: var(--yellow); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .logo { width: 140px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-sun"></i>
+        </button>
+        <div class="container">
+            <img src="https://i.imgur.com/8KzL2pN.png" alt="HOUSEWIRE PRO Logo" class="logo">
+            <h1>HOUSEWIRE PRO™</h1>
+            <p><span>Residential Wiring Toolkit</span></p>
+            <p style="max-width:700px;margin:20px auto;font-size:1.2rem;opacity:0.9;">
+                Drag-and-drop home wiring diagrams, NEC checklists, smart home integrations — built for <strong>residential electricians only</strong>.
+            </p>
+            <a href="#" class="btn">Start Free Trial</a>
+            <a href="#" class="btn btn-secondary">See Sample Plans</a>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="container">
+            <h2>Built for Home Wiring Pros</h2>
+            <div class="grid">
+                <div class="card">
+                    <i class="fas fa-home"></i>
+                    <h3>Home Templates</h3>
+                    <p>Kitchens, bedrooms, garages — pre-wired.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>NEC Checklists</h3>
+                    <p>GFCI, AFCI, tamper-resistant outlets.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Smart Home</h3>
+                    <p>Lutron, Ring, Nest, EV chargers.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Panel Calc</h3>
+                    <p>Auto breaker schedules & load calc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2>Sample: 3-Bedroom Home</h2>
+        <div class="diagram" onclick="alert('Open full editor: Add outlets, lights, smoke detectors')">
+            <i class="fas fa-house-user" style="font-size:2.5rem;color:var(--yellow);"></i>
+            <div style="margin:10px 0;font-weight:600;">Click to Edit: 2,400 sq ft</div>
+            <small>240V Panel • 14 Circuits • Smart Lighting</small>
+        </div>
+        <button id="exportPdf" onclick="alert('PDF sent to your email')">
+            Export as PDF
+        </button>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2>Pricing</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Solo</h3>
+                    <p class="price" style="font-size:2.2rem;color:var(--yellow);font-weight:700;">FREE</p>
+                    <ul style="text-align:left;margin:20px 0;">
+                        <li>3 active projects</li>
+                        <li>Basic templates</li>
+                        <li>PDF export</li>
+                    </ul>
+                    <a href="#" class="btn">Get Started</a>
+                </div>
+                <div class="card" style="border:3px solid var(--yellow);transform:scale(1.05);">
+                    <h3>Pro</h3>
+                    <p class="price" style="font-size:2.2rem;color:var(--yellow);font-weight:700;">$19<span style="font-size:1rem;">/mo</span></p>
+                    <ul style="text-align:left;margin:20px 0;">
+                        <li>Unlimited homes</li>
+                        <li>Smart modules</li>
+                        <li>Client links</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#" class="btn">Go Pro</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 HOUSEWIRE PRO™ – Residential Edition. 
+            <a href="#">Terms</a> | <a href="#">Privacy</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.querySelector('.theme-toggle i');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        }
+        window.onload = () => {
+            const icon = document.querySelector('.theme-toggle i');
+            if (document.body.getAttribute('data-theme') === 'dark') {
+                icon.classList.replace('fa-sun', 'fa-moon');
+            }
+        };
+    </script>
+</body>
+</html>
